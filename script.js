@@ -45,53 +45,25 @@ window.addEventListener("scroll", () => {
   let current = "";
   sections.forEach((section) => {
     const sectionTop = section.offsetTop - 140;
-    if (scrollY >= sectionTop) {
-      current = section.getAttribute("id");
-    }
+    if (scrollY >= sectionTop) current = section.getAttribute("id");
   });
 
   navItems.forEach((a) => {
     a.classList.remove("active");
-    if (a.getAttribute("href") === `#${current}`) {
-      a.classList.add("active");
-    }
+    if (a.getAttribute("href") === `#${current}`) a.classList.add("active");
   });
 });
 
-// Animated Numbers
-const counters = document.querySelectorAll(".stat-num");
-let counted = false;
+// Toast
+const toast = document.getElementById("toast");
+function showToast(msg) {
+  if (!toast) return;
 
-function countUp() {
-  if (counted) return;
+  toast.textContent = msg;
+  toast.classList.add("show");
 
-  const hero = document.getElementById("home");
-  if (!hero) return;
-
-  const heroTop = hero.getBoundingClientRect().top;
-
-  if (heroTop < window.innerHeight - 120) {
-    counted = true;
-    counters.forEach((counter) => {
-      const target = +counter.getAttribute("data-count");
-      let num = 0;
-      const speed = 25;
-
-      const run = setInterval(() => {
-        num++;
-        counter.textContent = num;
-
-        if (num >= target) {
-          counter.textContent = target;
-          clearInterval(run);
-        }
-      }, speed);
-    });
-  }
+  setTimeout(() => toast.classList.remove("show"), 1800);
 }
-
-window.addEventListener("scroll", countUp);
-countUp();
 
 // Skills Popup
 const skillCards = document.querySelectorAll(".skill-card");
@@ -120,7 +92,21 @@ if (skillCards.length && popup && popupText && closePopup) {
   });
 }
 
-// ✅ Certificate Popup Open/Close
+// ✅ Skills fade animation on scroll
+const skillCardsAll = document.querySelectorAll(".skill-card");
+
+const skillObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add("show");
+    });
+  },
+  { threshold: 0.2 }
+);
+
+skillCardsAll.forEach((card) => skillObserver.observe(card));
+
+/* ✅ CERTIFICATES POPUP (OPEN/CLOSE) */
 function openCert(imgPath, title) {
   const popup = document.getElementById("certPopup");
   const img = document.getElementById("certImage");
@@ -144,59 +130,29 @@ document.addEventListener("click", (e) => {
   if (popup && e.target === popup) closeCert();
 });
 
-// Toast
-const toast = document.getElementById("toast");
-function showToast(msg) {
-  if (!toast) return;
+// ✅ Make functions global (important because HTML onclick uses them)
+window.openCert = openCert;
+window.closeCert = closeCert;
 
-  toast.textContent = msg;
-  toast.classList.add("show");
-
-  setTimeout(() => toast.classList.remove("show"), 1800);
-}
-
-// ✅ Certificates Auto-scroll + Arrows
+/* ✅ CERTIFICATES ARROWS (LEFT / RIGHT) */
 const certSlider = document.getElementById("certSlider");
 const certLeft = document.getElementById("certLeft");
 const certRight = document.getElementById("certRight");
 
-let certAutoScroll;
-
-function startCertAutoScroll() {
-  if (!certSlider) return;
-
-  certAutoScroll = setInterval(() => {
-    certSlider.scrollLeft += 1.2;
-
-    if (certSlider.scrollLeft + certSlider.clientWidth >= certSlider.scrollWidth - 2) {
-      certSlider.scrollLeft = 0;
-    }
-  }, 20);
-}
-
-function stopCertAutoScroll() {
-  clearInterval(certAutoScroll);
-}
-
-if (certSlider) {
-  startCertAutoScroll();
-
-  certSlider.addEventListener("mouseenter", stopCertAutoScroll);
-  certSlider.addEventListener("mouseleave", startCertAutoScroll);
-}
-
-if (certLeft && certSlider) {
+if (certSlider && certLeft && certRight) {
   certLeft.addEventListener("click", () => {
-    stopCertAutoScroll();
-    certSlider.scrollBy({ left: -320, behavior: "smooth" });
-    setTimeout(startCertAutoScroll, 1200);
+    certSlider.scrollBy({
+      left: -(certSlider.clientWidth / 3),
+      behavior: "smooth",
+    });
   });
-}
 
-if (certRight && certSlider) {
   certRight.addEventListener("click", () => {
-    stopCertAutoScroll();
-    certSlider.scrollBy({ left: 320, behavior: "smooth" });
-    setTimeout(startCertAutoScroll, 1200);
+    certSlider.scrollBy({
+      left: certSlider.clientWidth / 3,
+      behavior: "smooth",
+    });
   });
+} else {
+  console.log("❌ Certificates slider/arrows not found in HTML");
 }

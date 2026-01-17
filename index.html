@@ -26,8 +26,8 @@
 
   <!-- Navbar -->
   <header class="navbar glass">
-    <div class="logo">
-      <span class="dot"></span> Chiranth<span class="accent">.dev</span>
+    <div class="brand-icon">
+      <i class="fa-solid fa-bolt"></i>
     </div>
 
     <nav class="nav-links glass" id="navLinks">
@@ -43,6 +43,7 @@
       <button class="btn-icon" id="themeBtn" title="Toggle Theme">
         <i class="fa-solid fa-moon"></i>
       </button>
+
       <button class="hamburger" id="hamburger">
         <i class="fa-solid fa-bars"></i>
       </button>
@@ -60,7 +61,7 @@
   <!-- Hero -->
   <section id="home" class="hero">
     <div class="hero-left">
-      <p class="mini-tag glass"><i class="fa-solid fa-star"></i> Aspiring Software Developer</p>
+      <p class="mini-tag glass"><i class="fa-solid fa-bolt"></i> Aspiring Software Developer</p>
 
       <h1 class="hero-title">
         Hi, I’m <span class="accent">Chiranth M</span><br />
@@ -150,7 +151,7 @@
   <section id="skills" class="section">
     <div class="section-head">
       <h2>Skills & Tools</h2>
-      <p class="muted">Click any skill to highlight</p>
+      <p class="muted">Click a skill to highlight</p>
     </div>
 
     <div class="skills-grid" id="skillsGrid">
@@ -231,17 +232,20 @@
   <section id="projects" class="section">
     <div class="section-head">
       <h2>Projects</h2>
-      <p class="muted">Clean project cards with details</p>
+      <p class="muted">My best works with screenshots</p>
     </div>
 
     <div class="projects-grid">
 
-      <!-- Project 1 -->
+      <!-- ✅ Project 1 (WITH Images) -->
       <div class="project-card glass">
+        <img src="projects/p1/2.png" class="project-img" alt="Student Management Preview">
+
         <div class="project-top">
           <h3>Student Management System</h3>
           <span class="tag">Java • MySQL</span>
         </div>
+
         <ul class="list small">
           <li>Role-based login (HOD/Staff/Student)</li>
           <li>Secure authentication and authorization</li>
@@ -253,15 +257,31 @@
           <a class="btn mini" href="https://github.com/ChiranthM20/Student-Management-System" target="_blank">
             <i class="fa-brands fa-github"></i> Code
           </a>
+
+          <button class="btn mini ghost"
+            onclick="openProjectGallery('Student Management System', [
+              'projects/p1/1.png',
+              'projects/p1/2.png',
+              'projects/p1/3.png',
+              'projects/p1/4.png',
+              'projects/p1/5.png',
+              'projects/p1/6.png'
+            ])">
+            <i class="fa-solid fa-images"></i> Screenshots
+          </button>
         </div>
       </div>
 
-      <!-- Project 2 -->
+      <!-- ✅ Project 2 (NO Images / NO Screenshots Button) -->
       <div class="project-card glass">
+
+         <img src="projects/p2/1.png" class="project-img" alt="Portfolio Preview">
+
         <div class="project-top">
           <h3>Personal Portfolio Website</h3>
           <span class="tag">HTML • CSS • JS</span>
         </div>
+
         <ul class="list small">
           <li>Responsive layout design</li>
           <li>Interactive UI and animations</li>
@@ -275,12 +295,15 @@
         </div>
       </div>
 
-      <!-- Project 3 -->
+      <!-- ✅ Project 3 (WITH Images) -->
       <div class="project-card glass">
+        <img src="projects/p3/1.png" class="project-img" alt="Churn Analysis Preview">
+
         <div class="project-top">
           <h3>Customer Telecom Churn Analysis</h3>
           <span class="tag">Python • ML</span>
         </div>
+
         <ul class="list small">
           <li>EDA + feature engineering</li>
           <li>Decision Tree, Random Forest models</li>
@@ -292,162 +315,164 @@
           <a class="btn mini" href="https://github.com/ChiranthM20/Telecom-Customer-Churn-Anlysis" target="_blank">
             <i class="fa-brands fa-github"></i> Code
           </a>
+
+          <button class="btn mini ghost"
+            onclick="openProjectGallery('Telecom Churn Analysis', [
+              'projects/p3/1.png',
+              'projects/p3/2.png',
+              'projects/p3/3.png',
+              'projects/p3/4.png',
+              'projects/p3/5.png'
+            ])">
+            <i class="fa-solid fa-images"></i> Screenshots
+          </button>
         </div>
       </div>
-
-       
 
     </div>
   </section>
 
   <!-- Certificates -->
-  <!-- ✅ Certificates (21 WITH IMAGE + NAME + POPUP) -->
-<section id="certificates" class="section">
-  <div class="section-head">
-    <h2>Certificates</h2>
-    <p class="muted">Auto sliding • Hover to show arrows • Click to view</p>
-  </div>
-
-  <!-- ✅ Arrows above slider -->
-  <div class="cert-topbar">
-    <button class="cert-arrow-top" id="certLeft">
-      <i class="fa-solid fa-chevron-left"></i>
-    </button>
-
-    <span class="cert-tip muted">Swipe / Scroll / Use arrows</span>
-
-    <button class="cert-arrow-top" id="certRight">
-      <i class="fa-solid fa-chevron-right"></i>
-    </button>
-  </div>
-
-  <!-- ✅ Slider -->
-  <div class="cert-slider" id="certSlider">
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c1.png','AIML Certificate')">
-      <img src="certificates/c1.png" alt="Certificate 1">
-      <h4>AIML Certificate</h4>
+  <section id="certificates" class="section">
+    <div class="section-head">
+      <h2>Certificates</h2>
+      <p class="muted">Click to view</p>
     </div>
 
-    <div class="cert-img-card glass" onclick="openCert('certificates/c2.png','AIML Training Certificate')">
-      <img src="certificates/c2.png" alt="Certificate 2">
-      <h4>AIML Training Certificate</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c3.png','Artificial Intelligence Fundamentals')">
-      <img src="certificates/c3.png" alt="Certificate 3">
-      <h4>AI Fundamentals</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c4.png','Data Science Essentials with Python')">
-      <img src="certificates/c4.png" alt="Certificate 4">
-      <h4>Data Science (Python)</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c5.png','Data Structures and Backend with Java')">
-      <img src="certificates/c5.png" alt="Certificate 5">
-      <h4>DSA + Backend (Java)</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c6.png','Data Warehousing and Business Intelligence')">
-      <img src="certificates/c6.png" alt="Certificate 6">
-      <h4>Data Warehousing & BI</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c7.png','Empowering with Web3 JS')">
-      <img src="certificates/c7.png" alt="Certificate 7">
-      <h4>Web3 JS</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c8.png','Essentials for English Speeches and Presentations')">
-      <img src="certificates/c8.png" alt="Certificate 8">
-      <h4>English Presentations</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c9.png','Frontend Apps Servlets and JavaServer Pages')">
-      <img src="certificates/c9.png" alt="Certificate 9">
-      <h4>Servlets + JSP</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c10.png','Full Stack Development (FSD) Certificate')">
-      <img src="certificates/c10.png" alt="Certificate 10">
-      <h4>Full Stack Development</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c11.png','Fundamentals of Java Programming')">
-      <img src="certificates/c11.png" alt="Certificate 11">
-      <h4>Java Fundamentals</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c12.png','Google Gemini Certificate')">
-      <img src="certificates/c12.png" alt="Certificate 12">
-      <h4>Google Gemini</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c13.png','Introduction to Data Science')">
-      <img src="certificates/c13.png" alt="Certificate 13">
-      <h4>Intro to Data Science</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c14.png','Introduction to Generative AI Studio')">
-      <img src="certificates/c14.png" alt="Certificate 14">
-      <h4>Generative AI Studio</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c15.png','Introduction to Modern AI')">
-      <img src="certificates/c15.png" alt="Certificate 15">
-      <h4>Modern AI</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c16.png','HackerRank Java Basic Certificate')">
-      <img src="certificates/c16.png" alt="Certificate 16">
-      <h4>HackerRank Java</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c17.png','JavaScript Essentials Certificate')">
-      <img src="certificates/c17.png" alt="Certificate 17">
-      <h4>JavaScript Essentials</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c18.png','HackerRank Python Basic Certificate')">
-      <img src="certificates/c18.png" alt="Certificate 18">
-      <h4>HackerRank Python</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c19.png','Customer Engagement Communication & Personality Dynamics')">
-      <img src="certificates/c19.png" alt="Certificate 19">
-      <h4>Communication Skills</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c20.png','Customer Engagement Problem Solving & Process Controls')">
-      <img src="certificates/c20.png" alt="Certificate 20">
-      <h4>Problem Solving Skills</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c21.png','Statistics for Data Science / DMDW')">
-      <img src="certificates/c21.png" alt="Certificate 21">
-      <h4>Statistics for Data Science</h4>
-    </div>
-
-    <div class="cert-img-card glass" onclick="openCert('certificates/c22.png','Critical Thinking in the AI Era')">
-      <img src="certificates/c22.png" alt="Certificate 22">
-      <h4>Critical Thinking in the AI Era</h4>
-    </div>
-
-  </div>
-
-  <!-- Popup -->
-  <div class="cert-popup" id="certPopup">
-    <div class="cert-popup-box glass">
-      <button class="close-btn" onclick="closeCert()">
-        <i class="fa-solid fa-xmark"></i>
+    <div class="cert-topbar">
+      <button class="cert-arrow-top" id="certLeft">
+        <i class="fa-solid fa-chevron-left"></i>
       </button>
-      <h3 id="certTitle">Certificate Name</h3>
-      <img id="certImage" src="" alt="Certificate Full View">
-    </div>
-  </div>
-</section>
 
+      <span class="cert-tip muted">Swipe / Scroll / Use arrows</span>
+
+      <button class="cert-arrow-top" id="certRight">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <div class="cert-slider" id="certSlider">
+      <div class="cert-img-card glass" onclick="openCert('certificates/c1.png','AIML Certificate')">
+        <img src="certificates/c1.png" alt="Certificate 1">
+        <h4>AIML Certificate</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c2.png','AIML Training Certificate')">
+        <img src="certificates/c2.png" alt="Certificate 2">
+        <h4>AIML Training Certificate</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c3.png','Artificial Intelligence Fundamentals')">
+        <img src="certificates/c3.png" alt="Certificate 3">
+        <h4>AI Fundamentals</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c4.png','Data Science Essentials with Python')">
+        <img src="certificates/c4.png" alt="Certificate 4">
+        <h4>Data Science (Python)</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c5.png','Data Structures and Backend with Java')">
+        <img src="certificates/c5.png" alt="Certificate 5">
+        <h4>DSA + Backend (Java)</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c6.png','Data Warehousing and Business Intelligence')">
+        <img src="certificates/c6.png" alt="Certificate 6">
+        <h4>Data Warehousing & BI</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c7.png','Empowering with Web3 JS')">
+        <img src="certificates/c7.png" alt="Certificate 7">
+        <h4>Web3 JS</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c8.png','Essentials for English Speeches and Presentations')">
+        <img src="certificates/c8.png" alt="Certificate 8">
+        <h4>English Presentations</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c9.png','Frontend Apps Servlets and JavaServer Pages')">
+        <img src="certificates/c9.png" alt="Certificate 9">
+        <h4>Servlets + JSP</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c10.png','Full Stack Development (FSD) Certificate')">
+        <img src="certificates/c10.png" alt="Certificate 10">
+        <h4>Full Stack Development</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c11.png','Fundamentals of Java Programming')">
+        <img src="certificates/c11.png" alt="Certificate 11">
+        <h4>Java Fundamentals</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c12.png','Google Gemini Certificate')">
+        <img src="certificates/c12.png" alt="Certificate 12">
+        <h4>Google Gemini</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c13.png','Introduction to Data Science')">
+        <img src="certificates/c13.png" alt="Certificate 13">
+        <h4>Intro to Data Science</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c14.png','Introduction to Generative AI Studio')">
+        <img src="certificates/c14.png" alt="Certificate 14">
+        <h4>Generative AI Studio</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c15.png','Introduction to Modern AI')">
+        <img src="certificates/c15.png" alt="Certificate 15">
+        <h4>Modern AI</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c16.png','HackerRank Java Basic Certificate')">
+        <img src="certificates/c16.png" alt="Certificate 16">
+        <h4>HackerRank Java</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c17.png','JavaScript Essentials Certificate')">
+        <img src="certificates/c17.png" alt="Certificate 17">
+        <h4>JavaScript Essentials</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c18.png','HackerRank Python Basic Certificate')">
+        <img src="certificates/c18.png" alt="Certificate 18">
+        <h4>HackerRank Python</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c19.png','Customer Engagement Communication & Personality Dynamics')">
+        <img src="certificates/c19.png" alt="Certificate 19">
+        <h4>Communication Skills</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c20.png','Customer Engagement Problem Solving & Process Controls')">
+        <img src="certificates/c20.png" alt="Certificate 20">
+        <h4>Problem Solving Skills</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c21.png','Statistics for Data Science / DMDW')">
+        <img src="certificates/c21.png" alt="Certificate 21">
+        <h4>Statistics for Data Science</h4>
+      </div>
+
+      <div class="cert-img-card glass" onclick="openCert('certificates/c22.png','Critical Thinking in the AI Era')">
+        <img src="certificates/c22.png" alt="Certificate 22">
+        <h4>Critical Thinking in the AI Era</h4>
+      </div>
+    </div>
+
+    <div class="cert-popup" id="certPopup">
+      <div class="cert-popup-box glass">
+        <button class="close-btn" onclick="closeCert()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h3 id="certTitle">Certificate Name</h3>
+        <img id="certImage" src="" alt="Certificate Full View">
+      </div>
+    </div>
+  </section>
 
   <!-- Contact -->
   <section id="contact" class="section">
@@ -487,8 +512,32 @@
     <p>© <span id="year"></span> Chiranth M</p>
   </footer>
 
-  <!-- Toast -->
   <div class="toast" id="toast"></div>
+
+  <!-- ✅ Project Gallery Popup (MUST be ABOVE script.js) -->
+  <div class="project-popup" id="projectPopup">
+    <div class="project-popup-box glass">
+      <button class="close-btn" onclick="closeProjectGallery()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <h3 id="projectTitle">Project Name</h3>
+
+      <div class="project-gallery-wrap">
+        <button class="gallery-arrow" id="galleryPrev">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <img id="projectGalleryImg" src="" alt="Project Screenshot">
+
+        <button class="gallery-arrow" id="galleryNext">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <p class="muted gallery-count" id="galleryCount">1 / 4</p>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

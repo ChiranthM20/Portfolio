@@ -10,7 +10,7 @@ window.addEventListener("load", () => {
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// Theme Toggle
+// ✅ Theme Toggle (Dark default)
 const themeBtn = document.getElementById("themeBtn");
 if (themeBtn) {
   themeBtn.addEventListener("click", () => {
@@ -27,7 +27,7 @@ if (themeBtn) {
   });
 }
 
-// Mobile Menu
+// ✅ Mobile Menu
 const hamburger = document.getElementById("hamburger");
 const navLinks = document.getElementById("navLinks");
 
@@ -35,26 +35,38 @@ if (hamburger && navLinks) {
   hamburger.addEventListener("click", () => {
     navLinks.classList.toggle("open");
   });
+
+  // ✅ close menu after click (mobile)
+  document.querySelectorAll(".nav-item").forEach((item) => {
+    item.addEventListener("click", () => navLinks.classList.remove("open"));
+  });
 }
 
-// Active Navbar Link
+// ✅ Active Navbar Link (Correct Highlight)
 const sections = document.querySelectorAll("section");
 const navItems = document.querySelectorAll(".nav-item");
 
-window.addEventListener("scroll", () => {
-  let current = "";
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop - 140;
-    if (scrollY >= sectionTop) current = section.getAttribute("id");
-  });
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        navItems.forEach((a) => a.classList.remove("active"));
+        const activeLink = document.querySelector(
+          `.nav-item[href="#${entry.target.id}"]`
+        );
+        if (activeLink) activeLink.classList.add("active");
+      }
+    });
+  },
+  {
+    root: null,
+    threshold: 0.55,
+  }
+);
 
-  navItems.forEach((a) => {
-    a.classList.remove("active");
-    if (a.getAttribute("href") === `#${current}`) a.classList.add("active");
-  });
-});
+sections.forEach((section) => sectionObserver.observe(section));
 
-// Toast
+// ✅ Toast
 const toast = document.getElementById("toast");
 function showToast(msg) {
   if (!toast) return;
@@ -65,7 +77,7 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove("show"), 1800);
 }
 
-// Skills Popup
+// ✅ Skills Popup
 const skillCards = document.querySelectorAll(".skill-card");
 const popup = document.getElementById("skillPopup");
 const popupText = document.getElementById("popupText");
@@ -79,10 +91,10 @@ if (skillCards.length && popup && popupText && closePopup) {
       card.classList.add("selected");
       const skill = card.getAttribute("data-skill");
 
-      popupText.innerHTML = `✅ Selected Skill: <b>${skill}</b>`;
+      popupText.innerHTML = `🔥 <b>${skill}</b> is highlighted now`;
       popup.classList.add("show");
 
-      showToast(`${skill} selected ⭐`);
+      showToast(`${skill} Activated ⚡`);
     });
   });
 
@@ -93,9 +105,7 @@ if (skillCards.length && popup && popupText && closePopup) {
 }
 
 // ✅ Skills fade animation on scroll
-const skillCardsAll = document.querySelectorAll(".skill-card");
-
-const skillObserver = new IntersectionObserver(
+const skillObserver2 = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) entry.target.classList.add("show");
@@ -104,7 +114,7 @@ const skillObserver = new IntersectionObserver(
   { threshold: 0.2 }
 );
 
-skillCardsAll.forEach((card) => skillObserver.observe(card));
+skillCards.forEach((card) => skillObserver2.observe(card));
 
 /* ✅ CERTIFICATES POPUP (OPEN/CLOSE) */
 function openCert(imgPath, title) {
@@ -124,13 +134,11 @@ function closeCert() {
   if (popup) popup.classList.remove("show");
 }
 
-// Close popup when clicking outside
 document.addEventListener("click", (e) => {
   const popup = document.getElementById("certPopup");
   if (popup && e.target === popup) closeCert();
 });
 
-// ✅ Make functions global (important because HTML onclick uses them)
 window.openCert = openCert;
 window.closeCert = closeCert;
 
@@ -153,6 +161,82 @@ if (certSlider && certLeft && certRight) {
       behavior: "smooth",
     });
   });
-} else {
-  console.log("❌ Certificates slider/arrows not found in HTML");
 }
+
+/* ✅ Project Gallery Popup with Slider (FIXED ARROWS ✅) */
+let galleryImages = [];
+let currentGalleryIndex = 0;
+
+function updateGalleryCount() {
+  const count = document.getElementById("galleryCount");
+  if (count) count.textContent = `${currentGalleryIndex + 1} / ${galleryImages.length}`;
+}
+
+function showNextImage() {
+  if (!galleryImages.length) return;
+  currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
+
+  const img = document.getElementById("projectGalleryImg");
+  if (img) img.src = galleryImages[currentGalleryIndex];
+
+  updateGalleryCount();
+}
+
+function showPrevImage() {
+  if (!galleryImages.length) return;
+  currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
+
+  const img = document.getElementById("projectGalleryImg");
+  if (img) img.src = galleryImages[currentGalleryIndex];
+
+  updateGalleryCount();
+}
+
+function openProjectGallery(title, images) {
+  const popup = document.getElementById("projectPopup");
+  const img = document.getElementById("projectGalleryImg");
+  const text = document.getElementById("projectTitle");
+
+  if (!popup || !img || !text) return;
+
+  galleryImages = images;
+  currentGalleryIndex = 0;
+
+  text.textContent = title;
+  img.src = galleryImages[currentGalleryIndex];
+
+  updateGalleryCount();
+  popup.classList.add("show");
+
+  // ✅ Attach arrow click events when popup opens
+  const galleryNext = document.getElementById("galleryNext");
+  const galleryPrev = document.getElementById("galleryPrev");
+
+  if (galleryNext) galleryNext.onclick = showNextImage;
+  if (galleryPrev) galleryPrev.onclick = showPrevImage;
+}
+
+function closeProjectGallery() {
+  const popup = document.getElementById("projectPopup");
+  if (popup) popup.classList.remove("show");
+}
+
+// ✅ Close popup when clicked outside
+document.addEventListener("click", (e) => {
+  const popup = document.getElementById("projectPopup");
+  if (popup && e.target === popup) closeProjectGallery();
+});
+
+// ✅ Keyboard support
+document.addEventListener("keydown", (e) => {
+  const popup = document.getElementById("projectPopup");
+  if (!popup || !popup.classList.contains("show")) return;
+
+  if (e.key === "ArrowRight") showNextImage();
+  if (e.key === "ArrowLeft") showPrevImage();
+  if (e.key === "Escape") closeProjectGallery();
+});
+
+// ✅ Global functions
+window.openProjectGallery = openProjectGallery;
+window.closeProjectGallery = closeProjectGallery;
